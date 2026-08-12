@@ -1,34 +1,12 @@
 global:
-  scrape_interval:     15s
+  scrape_interval: 15s
+  evaluation_interval: 15s
   external_labels:
     monitor: 'railway-prom'
 
 scrape_configs:
-  - job_name: 'prometheus'
-    scrape_interval: 5s
+  - job_name: bapp
     static_configs:
-      - targets: ['localhost:9090']
-
-  - job_name: 'demo_prometheus_metrics'
-    scrape_interval: 5s
-    scheme: https
+      - targets:
+          - bapp.railway.internal:8081
     metrics_path: /metrics
-    static_configs:
-      - targets: ['railway-prometheus-production-24ce.up.railway.app']
-
-  - job_name: 'postgres_metrics_collector'
-    scrape_interval: 1s
-    scheme: https
-    metrics_path: /metrics
-    static_configs:
-      - targets: ['postgres-metrics-collector-staging.up.railway.app']
-
-  # - job_name: 'postgres'
-  #   scrape_interval: 5s
-  #   static_configs:
-  #     - targets: ['localhost:9187']
-
-  # - job_name: 'mysql'
-  #   scrape_interval: 5s
-  #   static_configs:
-  #     - targets: ['localhost:9104']

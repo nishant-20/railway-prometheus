@@ -8,5 +8,5 @@ scrape_configs:
   - job_name: bapp
     static_configs:
       - targets:
-          - bapp.railway.internal:8081
+          - localhost:8081
     metrics_path: /metrics

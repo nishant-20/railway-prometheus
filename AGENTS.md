@@ -13,8 +13,7 @@ Files:
   the image; the live config is the heredoc in `entrypoint.sh`. Keep the two in sync if you
   change the config shape.
 - `railway.toml` — Railway build/deploy settings.
-- `README.md` — upstream Railway template text (its "self-monitor + demo app" description is
-  out of date; the config now scrapes bapp only).
+- `README.md` — short overview for humans; points here for details.
 
 ## How it runs and deploys
 - Railway builds from `Dockerfile` (`builder = "DOCKERFILE"`), runs 1 replica, restart policy

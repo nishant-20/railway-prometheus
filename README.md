@@ -1,13 +1,17 @@
----
-title: Prometheus
-description: A minimal example of the Prometheus timeseries database
-tags:
-  - prometheus
-  - observability
----
+# railway-prometheus
 
-# Prometheus Example
+Prometheus for the bapp API, deployed on Railway. It scrapes bapp's `/metrics` endpoint
+(job `bapp`) every 15s and keeps data for 365 days. Grafana (the `railway-grafana` repo) reads
+from it.
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/KmJatA?referralCode=9kQOPq)
+The scrape config is written at container start by `entrypoint.sh`, with the target taken from
+`METRICS_TARGET`. To change the target, update the Railway env var and redeploy. No rebuild is
+needed.
 
-Deploy Prometheus on Railway with one click. Pre-configured to self-monitor the Prometheus service and [a well-known demo-application](https://node.demo.prometheus.io/metrics)
+## Environment variables
+
+| Name | Purpose | Default |
+|---|---|---|
+| `METRICS_TARGET` | `host:port` of the bapp metrics endpoint (`/metrics` is appended) | `localhost:8081` |
+
+See [AGENTS.md](AGENTS.md) for details: files, deploy settings, and how to validate changes.
